@@ -32,7 +32,7 @@ const register = asyncWrapper(async (req, res, next) => {
       400,
       httpStatusText.FAIL
     );
-    return next(error);
+    return next(error); 
   }
   const password_Hashed = await bcrypt.hash(password, 10);
   //to assign the images
