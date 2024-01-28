@@ -55,7 +55,7 @@ const register = asyncWrapper(async (req, res, next) => {
   //response
   res
     .status(201)
-    .json({ status: httpStatusText.SUCCESS, data: newUser  });
+    .json({ status: httpStatusText.SUCCESS, data: { status: "success", userData, token } });
 });
 // LOGIN
 const login = asyncWrapper(async (req, res, next) => {
