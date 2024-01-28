@@ -35,13 +35,9 @@ const register = asyncWrapper(async (req, res, next) => {
     return next(error);
   }
   const password_Hashed = await bcrypt.hash(password, 10);
-
   //to assign the images
   console.log("req.file=>",req.file);
-
-
   // creattion
-
   const newUser = new user({
     firstName,
     lastName,
@@ -59,7 +55,7 @@ const register = asyncWrapper(async (req, res, next) => {
   //response
   res
     .status(201)
-    .json({ status: httpStatusText.SUCCESS, data: { newuser: newUser } });
+    .json({ status: httpStatusText.SUCCESS, data: newUser  });
 });
 // LOGIN
 const login = asyncWrapper(async (req, res, next) => {
