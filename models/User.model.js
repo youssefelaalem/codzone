@@ -20,10 +20,10 @@ const userSchema= new mongoose.Schema({
         required:true,
         validate: [validator.isEmail,'must be a viled email'],
     },
-    token:{
-        type:String,
-        required:true,
-    },
+    // token:{
+    //     type:String,
+    //     required:true,
+    // },
     role:{
         type:String,
         enum:[userRoles.ADMIN,userRoles.MANGER,userRoles.USER],
