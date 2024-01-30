@@ -20,19 +20,17 @@ const userSchema= new mongoose.Schema({
         required:true,
         validate: [validator.isEmail,'must be a viled email'],
     },
-    // token:{
-    //     type:String,
-    //     required:true,
-    // },
+    profilePhoto:{
+        type:Object,
+        default:{
+            url:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+            publicId:null,
+        }
+    },
     role:{
         type:String,
         enum:[userRoles.ADMIN,userRoles.MANGER,userRoles.USER],
         default:userRoles.USER,
-    },
-    avatar:{
-        type:String,
-        default:'uploads/avatar_1.png'
-
     }
 })
 module.exports= mongoose.model("User",userSchema)

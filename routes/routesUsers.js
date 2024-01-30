@@ -1,4 +1,5 @@
 const express= require("express")
+const path = require("path")
 const route=express.Router()
 const usersController=require("../controllers/usersController")
 const multer  = require('multer')
@@ -7,13 +8,17 @@ const diskStorage=multer.diskStorage({
     destination:function(req,file,cb){
         console.log('file',file);
 
-        cb(null,'uploads')
+        cb(null,path.join(__dirname,'../uploads'))
 
     },
     filename:function(req,file,cb){
-        const ext= file.mimetype.split('/')[1]
-        const fileName=`user-${Date.now()}.${ext}`
-        cb(null,fileName)
+        if(file){
+            const ext= file.mimetype.split('/')[1]
+            const fileName=`user-${Date.now()}.${ext}`
+            cb(null,fileName)
+        }else{
+            cb(null,false)
+        }
     }
 })
 
@@ -39,4 +44,6 @@ route.post("/register",upload.single('avatar'),usersController.register)
 //login
 route.post("/login",usersController.login)
 
+//upload new image
+route.post("/profile/imageProfile",verifyToken,upload.single('avatar'),usersController.profilePhotoUpload)
 module.exports=route 
