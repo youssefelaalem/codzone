@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path=require('path')
+
 // var cors = require('cors')// if the connection IP addresses (orgin) are different
 // app.use(cors())           //if req has been blocked by cors   
 app.use('/uploads',express.static(path.join(__dirname,'uploads')))
@@ -19,8 +20,10 @@ mongoos
 app.use(express.json())//to receive json from the body
 const routesCourses=require("./routes/routesCourses")
 const routesUsers=require('./routes/routesUsers')
+const transactionRouter=require('./routes/transaction')
 app.use("/api/courses",routesCourses)
 app.use("/api/users",routesUsers)
+app.use('/api/transaction', transactionRouter)
 // to handle all errors of routes that not exist in app
 //global middelware for not found router
 app.all("*",(req,res,next)=>{
