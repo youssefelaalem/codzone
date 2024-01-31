@@ -85,7 +85,7 @@ const register = asyncWrapper(async (req, res, next) => {
     .json({ status: httpStatusText.SUCCESS, data: { status: "success", userData:newUser, token } });
 
     //8.Remove the photo from the server
-    // fs.unlinkSync(imagePath)
+    fs.unlinkSync(imagePath)
   });
 // LOGIN
 const login = asyncWrapper(async (req, res, next) => {
@@ -158,6 +158,6 @@ const login = asyncWrapper(async (req, res, next) => {
     //7.send response to client
     res.status(200).json({message:"your profile photo uploaded successfully",profilePhotoLink:{url:userlogged.profilePhoto.url}})
     //8.Remove the photo from the server
-    // fs.unlinkSync(imagePath)
+    fs.unlinkSync(imagePath)
   })
 module.exports = { getAllUsers, register, login,profilePhotoUpload };
