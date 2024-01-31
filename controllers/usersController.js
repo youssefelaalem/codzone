@@ -85,7 +85,7 @@ const register = asyncWrapper(async (req, res, next) => {
     .json({ status: httpStatusText.SUCCESS, data: { status: "success", userData:newUser, token } });
 
     //8.Remove the photo from the server
-    fs.unlinkSync(imagePath)
+    // fs.unlinkSync(imagePath)
   });
 // LOGIN
 const login = asyncWrapper(async (req, res, next) => {
