@@ -46,4 +46,7 @@ route.post("/login",usersController.login)
 
 //upload new image
 route.post("/profile/imageProfile",verifyToken,upload.single('avatar'),usersController.profilePhotoUpload)
+
+//return token to verify
+route.get("/infoUser",verifyToken,usersController.infoCurrentUser)
 module.exports=route 

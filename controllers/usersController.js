@@ -160,4 +160,10 @@ const login = asyncWrapper(async (req, res, next) => {
     //8.Remove the photo from the server
     fs.unlinkSync(imagePath)
   })
-module.exports = { getAllUsers, register, login,profilePhotoUpload };
+
+
+  const infoCurrentUser=asyncWrapper(async(req,res)=>{
+    const userInfo=await user.findById(req.currentUserToken._id).select('-password')
+    res.status(200).json({userInfo})
+  })
+module.exports = { getAllUsers, register, login,profilePhotoUpload ,infoCurrentUser};
