@@ -164,6 +164,11 @@ const login = asyncWrapper(async (req, res, next) => {
 
   const infoCurrentUser=asyncWrapper(async(req,res)=>{
     const userInfo=await user.findById(req.currentUserToken._id).select('-password')
-    res.status(200).json({userInfo})
+    res
+      .status(201)
+      .json({
+        status: httpStatusText.SUCCESS,
+        data: { status: "success", userData:userInfo},
+      });
   })
 module.exports = { getAllUsers, register, login,profilePhotoUpload ,infoCurrentUser};
